@@ -10,6 +10,9 @@ export interface PurchaseEntity {
     AmountBought?: number;
     DiscountPercentage?: number;
     Price?: number;
+    Currency?: number;
+    Customer?: number;
+    Employee?: number;
     Date?: Date;
 }
 
@@ -18,6 +21,9 @@ export interface PurchaseCreateEntity {
     readonly AmountBought?: number;
     readonly DiscountPercentage?: number;
     readonly Price?: number;
+    readonly Currency?: number;
+    readonly Customer?: number;
+    readonly Employee?: number;
     readonly Date?: Date;
 }
 
@@ -33,6 +39,9 @@ export interface PurchaseEntityOptions {
             AmountBought?: number | number[];
             DiscountPercentage?: number | number[];
             Price?: number | number[];
+            Currency?: number | number[];
+            Customer?: number | number[];
+            Employee?: number | number[];
             Date?: Date | Date[];
         };
         notEquals?: {
@@ -41,6 +50,9 @@ export interface PurchaseEntityOptions {
             AmountBought?: number | number[];
             DiscountPercentage?: number | number[];
             Price?: number | number[];
+            Currency?: number | number[];
+            Customer?: number | number[];
+            Employee?: number | number[];
             Date?: Date | Date[];
         };
         contains?: {
@@ -49,6 +61,9 @@ export interface PurchaseEntityOptions {
             AmountBought?: number;
             DiscountPercentage?: number;
             Price?: number;
+            Currency?: number;
+            Customer?: number;
+            Employee?: number;
             Date?: Date;
         };
         greaterThan?: {
@@ -57,6 +72,9 @@ export interface PurchaseEntityOptions {
             AmountBought?: number;
             DiscountPercentage?: number;
             Price?: number;
+            Currency?: number;
+            Customer?: number;
+            Employee?: number;
             Date?: Date;
         };
         greaterThanOrEqual?: {
@@ -65,6 +83,9 @@ export interface PurchaseEntityOptions {
             AmountBought?: number;
             DiscountPercentage?: number;
             Price?: number;
+            Currency?: number;
+            Customer?: number;
+            Employee?: number;
             Date?: Date;
         };
         lessThan?: {
@@ -73,6 +94,9 @@ export interface PurchaseEntityOptions {
             AmountBought?: number;
             DiscountPercentage?: number;
             Price?: number;
+            Currency?: number;
+            Customer?: number;
+            Employee?: number;
             Date?: Date;
         };
         lessThanOrEqual?: {
@@ -81,6 +105,9 @@ export interface PurchaseEntityOptions {
             AmountBought?: number;
             DiscountPercentage?: number;
             Price?: number;
+            Currency?: number;
+            Customer?: number;
+            Employee?: number;
             Date?: Date;
         };
     },
@@ -137,6 +164,21 @@ export class PurchaseRepository {
                 name: "Price",
                 column: "PURCHASE_PRICE",
                 type: "DECIMAL",
+            },
+            {
+                name: "Currency",
+                column: "PURCHASE_CURRENCY",
+                type: "INTEGER",
+            },
+            {
+                name: "Customer",
+                column: "PURCHASE_CUSTOMER",
+                type: "INTEGER",
+            },
+            {
+                name: "Employee",
+                column: "PURCHASE_EMPLOYEE",
+                type: "INTEGER",
             },
             {
                 name: "Date",

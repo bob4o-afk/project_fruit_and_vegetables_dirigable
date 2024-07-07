@@ -7,6 +7,8 @@ export interface ItemInStoreEntity {
     readonly Id: number;
     Name?: string;
     Price?: number;
+    Currency?: number;
+    Product?: number;
     AmountInShop?: number;
     Purchase?: number;
 }
@@ -14,6 +16,8 @@ export interface ItemInStoreEntity {
 export interface ItemInStoreCreateEntity {
     readonly Name?: string;
     readonly Price?: number;
+    readonly Currency?: number;
+    readonly Product?: number;
     readonly AmountInShop?: number;
     readonly Purchase?: number;
 }
@@ -28,6 +32,8 @@ export interface ItemInStoreEntityOptions {
             Id?: number | number[];
             Name?: string | string[];
             Price?: number | number[];
+            Currency?: number | number[];
+            Product?: number | number[];
             AmountInShop?: number | number[];
             Purchase?: number | number[];
         };
@@ -35,6 +41,8 @@ export interface ItemInStoreEntityOptions {
             Id?: number | number[];
             Name?: string | string[];
             Price?: number | number[];
+            Currency?: number | number[];
+            Product?: number | number[];
             AmountInShop?: number | number[];
             Purchase?: number | number[];
         };
@@ -42,6 +50,8 @@ export interface ItemInStoreEntityOptions {
             Id?: number;
             Name?: string;
             Price?: number;
+            Currency?: number;
+            Product?: number;
             AmountInShop?: number;
             Purchase?: number;
         };
@@ -49,6 +59,8 @@ export interface ItemInStoreEntityOptions {
             Id?: number;
             Name?: string;
             Price?: number;
+            Currency?: number;
+            Product?: number;
             AmountInShop?: number;
             Purchase?: number;
         };
@@ -56,6 +68,8 @@ export interface ItemInStoreEntityOptions {
             Id?: number;
             Name?: string;
             Price?: number;
+            Currency?: number;
+            Product?: number;
             AmountInShop?: number;
             Purchase?: number;
         };
@@ -63,6 +77,8 @@ export interface ItemInStoreEntityOptions {
             Id?: number;
             Name?: string;
             Price?: number;
+            Currency?: number;
+            Product?: number;
             AmountInShop?: number;
             Purchase?: number;
         };
@@ -70,6 +86,8 @@ export interface ItemInStoreEntityOptions {
             Id?: number;
             Name?: string;
             Price?: number;
+            Currency?: number;
+            Product?: number;
             AmountInShop?: number;
             Purchase?: number;
         };
@@ -116,6 +134,16 @@ export class ItemInStoreRepository {
             {
                 name: "Price",
                 column: "ITEMINSTORE_PRICE",
+                type: "INTEGER",
+            },
+            {
+                name: "Currency",
+                column: "ITEMINSTORE_CURRENCY",
+                type: "INTEGER",
+            },
+            {
+                name: "Product",
+                column: "ITEMINSTORE_PRODUCT",
                 type: "INTEGER",
             },
             {

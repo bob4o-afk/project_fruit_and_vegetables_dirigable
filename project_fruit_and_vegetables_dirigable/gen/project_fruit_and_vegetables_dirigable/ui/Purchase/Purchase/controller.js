@@ -5,7 +5,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 	.config(["entityApiProvider", function (entityApiProvider) {
 		entityApiProvider.baseUrl = "/services/ts/project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Purchase/PurchaseService.ts";
 	}])
-	.controller('PageController', ['$scope', 'messageHub', 'entityApi', 'Extensions', function ($scope, messageHub, entityApi, Extensions) {
+	.controller('PageController', ['$scope', '$http', 'messageHub', 'entityApi', 'Extensions', function ($scope, $http, messageHub, entityApi, Extensions) {
 
 		$scope.dataPage = 1;
 		$scope.dataCount = 0;
@@ -114,12 +114,18 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.showDialogWindow("Purchase-details", {
 				action: "select",
 				entity: entity,
+				optionsCurrency: $scope.optionsCurrency,
+				optionsCustomer: $scope.optionsCustomer,
+				optionsEmployee: $scope.optionsEmployee,
 			});
 		};
 
 		$scope.openFilter = function (entity) {
 			messageHub.showDialogWindow("Purchase-filter", {
 				entity: $scope.filterEntity,
+				optionsCurrency: $scope.optionsCurrency,
+				optionsCustomer: $scope.optionsCustomer,
+				optionsEmployee: $scope.optionsEmployee,
 			});
 		};
 
@@ -128,6 +134,9 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.showDialogWindow("Purchase-details", {
 				action: "create",
 				entity: {},
+				optionsCurrency: $scope.optionsCurrency,
+				optionsCustomer: $scope.optionsCustomer,
+				optionsEmployee: $scope.optionsEmployee,
 			}, null, false);
 		};
 
@@ -135,6 +144,9 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.showDialogWindow("Purchase-details", {
 				action: "update",
 				entity: entity,
+				optionsCurrency: $scope.optionsCurrency,
+				optionsCustomer: $scope.optionsCustomer,
+				optionsEmployee: $scope.optionsEmployee,
 			}, null, false);
 		};
 
@@ -166,5 +178,64 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				}
 			});
 		};
+
+		//----------------Dropdowns-----------------//
+		$scope.optionsCurrency = [];
+		$scope.optionsCustomer = [];
+		$scope.optionsEmployee = [];
+
+
+		$http.get("/services/ts/codbex-currencies/gen/codbex-currencies/api/Currencies/CurrencyService.ts").then(function (response) {
+			$scope.optionsCurrency = response.data.map(e => {
+				return {
+					value: e.Id,
+					text: e.Code
+				}
+			});
+		});
+
+		$http.get("/services/ts/codbex-partners/gen/codbex-partners/api/Customers/CustomerService.ts").then(function (response) {
+			$scope.optionsCustomer = response.data.map(e => {
+				return {
+					value: e.Id,
+					text: e.Name
+				}
+			});
+		});
+
+		$http.get("/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts").then(function (response) {
+			$scope.optionsEmployee = response.data.map(e => {
+				return {
+					value: e.Id,
+					text: e.FirstName
+				}
+			});
+		});
+
+		$scope.optionsCurrencyValue = function (optionKey) {
+			for (let i = 0; i < $scope.optionsCurrency.length; i++) {
+				if ($scope.optionsCurrency[i].value === optionKey) {
+					return $scope.optionsCurrency[i].text;
+				}
+			}
+			return null;
+		};
+		$scope.optionsCustomerValue = function (optionKey) {
+			for (let i = 0; i < $scope.optionsCustomer.length; i++) {
+				if ($scope.optionsCustomer[i].value === optionKey) {
+					return $scope.optionsCustomer[i].text;
+				}
+			}
+			return null;
+		};
+		$scope.optionsEmployeeValue = function (optionKey) {
+			for (let i = 0; i < $scope.optionsEmployee.length; i++) {
+				if ($scope.optionsEmployee[i].value === optionKey) {
+					return $scope.optionsEmployee[i].text;
+				}
+			}
+			return null;
+		};
+		//----------------Dropdowns-----------------//
 
 	}]);

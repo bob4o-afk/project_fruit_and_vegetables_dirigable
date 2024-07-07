@@ -834,6 +834,15 @@ components:
         Price:
           type: number
           format: double
+        Currency:
+          type: integer
+          format: int32
+        Customer:
+          type: integer
+          format: int32
+        Employee:
+          type: integer
+          format: int32
         Date:
     PurchaseFilterOptions:
       type: object
@@ -887,6 +896,30 @@ components:
                       items:
                         type: number
                         format: double
+                Currency:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Customer:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Employee:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
                 Date:
                   oneOf:
             notEquals:
@@ -935,6 +968,30 @@ components:
                       items:
                         type: number
                         format: double
+                Currency:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Customer:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Employee:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
                 Date:
                   oneOf:
             contains:
@@ -948,6 +1005,9 @@ components:
                 AmountBought:
                 DiscountPercentage:
                 Price:
+                Currency:
+                Customer:
+                Employee:
                 Date:
             greaterThan:
               type: object
@@ -968,6 +1028,15 @@ components:
                 Price:
                   type: number
                   format: double
+                Currency:
+                  type: integer
+                  format: int32
+                Customer:
+                  type: integer
+                  format: int32
+                Employee:
+                  type: integer
+                  format: int32
                 Date:
             greaterThanOrEqual:
               type: object
@@ -988,6 +1057,15 @@ components:
                 Price:
                   type: number
                   format: double
+                Currency:
+                  type: integer
+                  format: int32
+                Customer:
+                  type: integer
+                  format: int32
+                Employee:
+                  type: integer
+                  format: int32
                 Date:
             lessThan:
               type: object
@@ -1008,6 +1086,15 @@ components:
                 Price:
                   type: number
                   format: double
+                Currency:
+                  type: integer
+                  format: int32
+                Customer:
+                  type: integer
+                  format: int32
+                Employee:
+                  type: integer
+                  format: int32
                 Date:
             lessThanOrEqual:
               type: object
@@ -1028,15 +1115,24 @@ components:
                 Price:
                   type: number
                   format: double
+                Currency:
+                  type: integer
+                  format: int32
+                Customer:
+                  type: integer
+                  format: int32
+                Employee:
+                  type: integer
+                  format: int32
                 Date:
         $select:
           type: array
-          example: ["Id", "Name", "AmountBought", "DiscountPercentage", "Price", "Date"]
+          example: ["Id", "Name", "AmountBought", "DiscountPercentage", "Price", "Currency", "Customer", "Employee", "Date"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Name,AmountBought,DiscountPercentage,Price,Date"
+            example: "Id,Name,AmountBought,DiscountPercentage,Price,Currency,Customer,Employee,Date"
         $order:
           type: string
           enum: ["asc", "desc"]
@@ -1059,6 +1155,12 @@ components:
           minLength: 0
           maxLength: 20
         Price:
+          type: integer
+          format: int32
+        Currency:
+          type: integer
+          format: int32
+        Product:
           type: integer
           format: int32
         AmountInShop:
@@ -1096,6 +1198,22 @@ components:
                         minLength: 0
                         maxLength: 20
                 Price:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Currency:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Product:
                   oneOf:
                     - type: integer
                       format: int32
@@ -1149,6 +1267,22 @@ components:
                       items:
                         type: integer
                         format: int32
+                Currency:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Product:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
                 AmountInShop:
                   oneOf:
                     - type: integer
@@ -1174,6 +1308,8 @@ components:
                   minLength: 0
                   maxLength: 20
                 Price:
+                Currency:
+                Product:
                 AmountInShop:
                 Purchase:
             greaterThan:
@@ -1187,6 +1323,12 @@ components:
                   minLength: 0
                   maxLength: 20
                 Price:
+                  type: integer
+                  format: int32
+                Currency:
+                  type: integer
+                  format: int32
+                Product:
                   type: integer
                   format: int32
                 AmountInShop:
@@ -1208,6 +1350,12 @@ components:
                 Price:
                   type: integer
                   format: int32
+                Currency:
+                  type: integer
+                  format: int32
+                Product:
+                  type: integer
+                  format: int32
                 AmountInShop:
                   type: integer
                   format: int32
@@ -1225,6 +1373,12 @@ components:
                   minLength: 0
                   maxLength: 20
                 Price:
+                  type: integer
+                  format: int32
+                Currency:
+                  type: integer
+                  format: int32
+                Product:
                   type: integer
                   format: int32
                 AmountInShop:
@@ -1246,6 +1400,12 @@ components:
                 Price:
                   type: integer
                   format: int32
+                Currency:
+                  type: integer
+                  format: int32
+                Product:
+                  type: integer
+                  format: int32
                 AmountInShop:
                   type: integer
                   format: int32
@@ -1254,12 +1414,12 @@ components:
                   format: int32
         $select:
           type: array
-          example: ["Id", "Name", "Price", "AmountInShop", "Purchase"]
+          example: ["Id", "Name", "Price", "Currency", "Product", "AmountInShop", "Purchase"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Name,Price,AmountInShop,Purchase"
+            example: "Id,Name,Price,Currency,Product,AmountInShop,Purchase"
         $order:
           type: string
           enum: ["asc", "desc"]
