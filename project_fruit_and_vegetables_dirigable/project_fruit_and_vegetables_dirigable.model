@@ -1,0 +1,195 @@
+{
+    "model": {
+        "entities": [
+            {
+                "properties": [
+                    {
+                        "dataAutoIncrement": "true",
+                        "dataName": "PURCHASE_ID",
+                        "dataNullable": "true",
+                        "dataPrimaryKey": "true",
+                        "dataType": "INTEGER",
+                        "name": "Id",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    },
+                    {
+                        "dataLength": "30",
+                        "dataName": "PURCHASE_NAME",
+                        "dataNullable": "true",
+                        "dataType": "VARCHAR",
+                        "name": "Name",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "30",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    },
+                    {
+                        "dataName": "PURCHASE_AMOUNTBOUGHT",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "name": "AmountBought",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "NUMBER"
+                    },
+                    {
+                        "dataName": "PURCHASE_DISCOUNTPERCENTAGE",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "name": "DiscountPercentage",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "NUMBER"
+                    },
+                    {
+                        "dataName": "PURCHASE_PRICE",
+                        "dataNullable": "true",
+                        "dataPrecision": "16",
+                        "dataScale": "2",
+                        "dataType": "DECIMAL",
+                        "name": "Price",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "NUMBER"
+                    },
+                    {
+                        "dataName": "PURCHASE_DATE",
+                        "dataNullable": "true",
+                        "dataType": "DATE",
+                        "name": "Date",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "DATE"
+                    }
+                ],
+                "caption": "Manage entity Purchase",
+                "dataCount": "SELECT COUNT(*) AS COUNT FROM \"${tablePrefix}PURCHASE\"",
+                "dataName": "PURCHASE",
+                "dataQuery": "",
+                "generateReport": "false",
+                "icon": "/services/web/resources/unicons/file.svg",
+                "layoutType": "MANAGE",
+                "menuIndex": "100",
+                "menuKey": "purchase",
+                "menuLabel": "Purchase",
+                "name": "Purchase",
+                "navigationPath": "/Home",
+                "perspectiveIcon": "/services/web/resources/unicons/puzzle-piece.svg",
+                "perspectiveLabel": "Purchase",
+                "perspectiveName": "Purchase",
+                "perspectiveOrder": "100",
+                "perspectiveRole": "",
+                "title": "Purchase",
+                "tooltip": "Purchase",
+                "type": "PRIMARY"
+            },
+            {
+                "properties": [
+                    {
+                        "dataAutoIncrement": "true",
+                        "dataName": "ITEMINSTORE_ID",
+                        "dataNullable": "true",
+                        "dataPrimaryKey": "true",
+                        "dataType": "INTEGER",
+                        "name": "Id",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    },
+                    {
+                        "dataLength": "20",
+                        "dataName": "ITEMINSTORE_NAME",
+                        "dataNullable": "true",
+                        "dataType": "VARCHAR",
+                        "name": "Name",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    },
+                    {
+                        "dataName": "ITEMINSTORE_PRICE",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "name": "Price",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "NUMBER"
+                    },
+                    {
+                        "dataName": "ITEMINSTORE_AMOUNTINSHOP",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "name": "AmountInShop",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "NUMBER"
+                    },
+                    {
+                        "dataName": "ITEMINSTORE_PURCHASE",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "name": "Purchase",
+                        "relationshipCardinality": "1_n",
+                        "relationshipName": "ItemInStore_Purchase",
+                        "relationshipType": "COMPOSITION",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX",
+                        "relationshipEntityName": "Purchase",
+                        "relationshipEntityPerspectiveName": "Purchase",
+                        "relationshipEntityPerspectiveLabel": "Entities"
+                    }
+                ],
+                "caption": "Manage entity ItemInStore",
+                "dataCount": "SELECT COUNT(*) AS COUNT FROM \"${tablePrefix}ITEMINSTORE\"",
+                "dataName": "ITEMINSTORE",
+                "dataQuery": "",
+                "generateReport": "false",
+                "icon": "/services/web/resources/unicons/file.svg",
+                "layoutType": "MANAGE",
+                "menuIndex": "100",
+                "menuKey": "iteminstore",
+                "menuLabel": "ItemInStore",
+                "name": "ItemInStore",
+                "navigationPath": "/Home",
+                "perspectiveIcon": "/services/web/resources/unicons/puzzle-piece.svg",
+                "perspectiveLabel": "Purchase",
+                "perspectiveName": "Purchase",
+                "perspectiveOrder": "100",
+                "perspectiveRole": "",
+                "title": "ItemInStore",
+                "tooltip": "ItemInStore",
+                "type": "DEPENDENT"
+            }
+        ],
+        "perspectives": [
+            {
+                "name": "Purchase",
+                "label": "Purchase",
+                "icon": "/services/web/resources/unicons/puzzle-piece.svg",
+                "order": "100",
+                "role": {}
+            },
+            {
+                "name": "Item",
+                "label": "Item",
+                "icon": "/services/web/resources/unicons/eye.svg",
+                "order": "300",
+                "role": {}
+            }
+        ],
+        "navigations": []
+    }
+}

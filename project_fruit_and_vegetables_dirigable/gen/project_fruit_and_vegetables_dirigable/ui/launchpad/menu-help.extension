@@ -1,0 +1,5 @@
+{
+    "module": "project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/ui/launchpad/menu-help.js",
+    "extensionPoint": "project_fruit_and_vegetables_dirigable-menu",
+    "description": "project_fruit_and_vegetables_dirigable - Application Menu"
+}

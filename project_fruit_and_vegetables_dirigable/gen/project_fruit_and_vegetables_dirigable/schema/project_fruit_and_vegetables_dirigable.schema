@@ -1,0 +1,91 @@
+{
+    "schema": {
+        "structures": [
+            {
+                "name": "CODBEX_PURCHASE",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "PURCHASE_ID"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 30,
+                        "nullable": true,
+                        "name": "PURCHASE_NAME"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "PURCHASE_AMOUNTBOUGHT"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "PURCHASE_DISCOUNTPERCENTAGE"
+                    },
+                    {
+                        "type": "DECIMAL",
+                        "precision": "16",
+                        "scale": "2",
+                        "nullable": true,
+                        "name": "PURCHASE_PRICE"
+                    },
+                    {
+                        "type": "DATE",
+                        "nullable": true,
+                        "name": "PURCHASE_DATE"
+                    }
+                ]
+            },
+            {
+                "name": "CODBEX_ITEMINSTORE",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "ITEMINSTORE_ID"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 20,
+                        "nullable": true,
+                        "name": "ITEMINSTORE_NAME"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "ITEMINSTORE_PRICE"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "ITEMINSTORE_AMOUNTINSHOP"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "ITEMINSTORE_PURCHASE"
+                    }
+                ]
+            },
+            {
+                "name": "ItemInStore_Purchase",
+                "type": "foreignKey",
+                "table": "CODBEX_ITEMINSTORE",
+                "constraintName": "ItemInStore_Purchase",
+                "columns": "ITEMINSTORE_PURCHASE",
+                "referencedTable": "CODBEX_PURCHASE",
+                "referencedColumns": "PURCHASE_ID"
+            }
+        ]
+    },
+    "datasource": "DefaultDB"
+}
