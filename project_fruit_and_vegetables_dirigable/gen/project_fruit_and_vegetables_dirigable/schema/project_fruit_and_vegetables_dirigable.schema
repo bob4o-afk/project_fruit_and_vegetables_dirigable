@@ -109,8 +109,6 @@
                 "columns": "PURCHASE_CURRENCY",
                 "referencedTable": "CODBEX_CURRENCY",
                 "referencedColumns": "CURRENCY_ID"
-                "referencedTable": "CODBEX_CURRENCY",
-                "referencedColumns": "CURRENCY_ID"
             },
             {
                 "name": "Purchase_Customer",
@@ -136,8 +134,6 @@
                 "table": "CODBEX_ITEMINSTORE",
                 "constraintName": "ItemInStore_Currency",
                 "columns": "ITEMINSTORE_CURRENCY",
-                "referencedTable": "CODBEX_CURRENCY",
-                "referencedColumns": "CURRENCY_ID"
                 "referencedTable": "CODBEX_CURRENCY",
                 "referencedColumns": "CURRENCY_ID"
             },
