@@ -14,6 +14,7 @@ export interface PurchaseEntity {
     Customer?: number;
     Employee?: number;
     Date?: Date;
+    ItemInStore?: number;
 }
 
 export interface PurchaseCreateEntity {
@@ -25,6 +26,7 @@ export interface PurchaseCreateEntity {
     readonly Customer?: number;
     readonly Employee?: number;
     readonly Date?: Date;
+    readonly ItemInStore?: number;
 }
 
 export interface PurchaseUpdateEntity extends PurchaseCreateEntity {
@@ -43,6 +45,7 @@ export interface PurchaseEntityOptions {
             Customer?: number | number[];
             Employee?: number | number[];
             Date?: Date | Date[];
+            ItemInStore?: number | number[];
         };
         notEquals?: {
             Id?: number | number[];
@@ -54,6 +57,7 @@ export interface PurchaseEntityOptions {
             Customer?: number | number[];
             Employee?: number | number[];
             Date?: Date | Date[];
+            ItemInStore?: number | number[];
         };
         contains?: {
             Id?: number;
@@ -65,6 +69,7 @@ export interface PurchaseEntityOptions {
             Customer?: number;
             Employee?: number;
             Date?: Date;
+            ItemInStore?: number;
         };
         greaterThan?: {
             Id?: number;
@@ -76,6 +81,7 @@ export interface PurchaseEntityOptions {
             Customer?: number;
             Employee?: number;
             Date?: Date;
+            ItemInStore?: number;
         };
         greaterThanOrEqual?: {
             Id?: number;
@@ -87,6 +93,7 @@ export interface PurchaseEntityOptions {
             Customer?: number;
             Employee?: number;
             Date?: Date;
+            ItemInStore?: number;
         };
         lessThan?: {
             Id?: number;
@@ -98,6 +105,7 @@ export interface PurchaseEntityOptions {
             Customer?: number;
             Employee?: number;
             Date?: Date;
+            ItemInStore?: number;
         };
         lessThanOrEqual?: {
             Id?: number;
@@ -109,6 +117,7 @@ export interface PurchaseEntityOptions {
             Customer?: number;
             Employee?: number;
             Date?: Date;
+            ItemInStore?: number;
         };
     },
     $select?: (keyof PurchaseEntity)[],
@@ -184,6 +193,11 @@ export class PurchaseRepository {
                 name: "Date",
                 column: "PURCHASE_DATE",
                 type: "DATE",
+            },
+            {
+                name: "ItemInStore",
+                column: "PURCHASE_ITEMINSTORE",
+                type: "INTEGER",
             }
         ]
     };

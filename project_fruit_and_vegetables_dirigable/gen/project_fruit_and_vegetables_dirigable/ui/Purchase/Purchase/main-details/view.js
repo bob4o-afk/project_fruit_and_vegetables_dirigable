@@ -6,12 +6,14 @@
 const viewData = {
     id: "Purchase-details",
     label: "Purchase",
-    link: "/services/web/project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/ui/Purchase/Purchase/dialog-window/index.html",
+    factory: "frame",
+    region: "center",
+    link: "/services/web/project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/ui/Purchase/Purchase/main-details/index.html",
     perspectiveName: "Purchase",
 };
 
 if (typeof exports !== 'undefined') {
-    exports.getDialogWindow = function () {
+    exports.getView = function () {
         return viewData;
     }
 }

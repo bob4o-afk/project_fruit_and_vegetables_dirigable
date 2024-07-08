@@ -10,7 +10,7 @@ servers:
   - url: /services/ts
 tags:
   - name: Purchase
-  - name: Purchase
+  - name: Item
 paths:
   /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Purchase/PurchaseService.ts:
     get:
@@ -412,7 +412,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Purchase/ItemInStoreService.ts:
+  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Item/ItemInStoreService.ts:
     get:
       summary: List ItemInStore
       parameters:
@@ -433,7 +433,7 @@ paths:
             type: integer
             allowEmptyValue: true
       tags:
-        - Purchase
+        - Item
       responses:
         200:
           description: Successful Request
@@ -464,7 +464,7 @@ paths:
     post:
       summary: Create ItemInStore
       tags:
-        - Purchase
+        - Item
       requestBody:
         content:
           application/json:
@@ -496,7 +496,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Purchase/ItemInStoreService.ts/{id}:
+  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Item/ItemInStoreService.ts/{id}:
     get:
       summary: Get ItemInStore by Id
       parameters:
@@ -507,7 +507,7 @@ paths:
           schema:
             type: string
       tags:
-        - Purchase
+        - Item
       responses:
         200:
           description: Successful Request
@@ -545,7 +545,7 @@ paths:
           schema:
             type: string
       tags:
-        - Purchase
+        - Item
       requestBody:
         content:
           application/json:
@@ -593,7 +593,7 @@ paths:
           schema:
             type: string
       tags:
-        - Purchase
+        - Item
       responses:
         204:
           description: Successful Request
@@ -615,11 +615,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Purchase/ItemInStoreService.ts/count:
+  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Item/ItemInStoreService.ts/count:
     get:
       summary: Count the number of ItemInStore
       tags:
-        - Purchase
+        - Item
       responses:
         200:
           description: Successful Request
@@ -643,7 +643,7 @@ paths:
     post:
       summary: Count the number of ItemInStore by ItemInStoreFilterOptions
       tags:
-        - Purchase
+        - Item
       requestBody:
         content:
           application/json:
@@ -725,11 +725,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Purchase/ItemInStoreService.ts/search:
+  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Item/ItemInStoreService.ts/search:
     post:
       summary: Search ItemInStore by ItemInStoreFilterOptions
       tags:
-        - Purchase
+        - Item
       requestBody:
         content:
           application/json:
@@ -844,6 +844,9 @@ components:
           type: integer
           format: int32
         Date:
+        ItemInStore:
+          type: integer
+          format: int32
     PurchaseFilterOptions:
       type: object
       properties:
@@ -922,6 +925,14 @@ components:
                         format: int32
                 Date:
                   oneOf:
+                ItemInStore:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
             notEquals:
               type: object
               properties:
@@ -994,6 +1005,14 @@ components:
                         format: int32
                 Date:
                   oneOf:
+                ItemInStore:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
             contains:
               type: object
               properties:
@@ -1009,6 +1028,7 @@ components:
                 Customer:
                 Employee:
                 Date:
+                ItemInStore:
             greaterThan:
               type: object
               properties:
@@ -1038,6 +1058,9 @@ components:
                   type: integer
                   format: int32
                 Date:
+                ItemInStore:
+                  type: integer
+                  format: int32
             greaterThanOrEqual:
               type: object
               properties:
@@ -1067,6 +1090,9 @@ components:
                   type: integer
                   format: int32
                 Date:
+                ItemInStore:
+                  type: integer
+                  format: int32
             lessThan:
               type: object
               properties:
@@ -1096,6 +1122,9 @@ components:
                   type: integer
                   format: int32
                 Date:
+                ItemInStore:
+                  type: integer
+                  format: int32
             lessThanOrEqual:
               type: object
               properties:
@@ -1125,14 +1154,17 @@ components:
                   type: integer
                   format: int32
                 Date:
+                ItemInStore:
+                  type: integer
+                  format: int32
         $select:
           type: array
-          example: ["Id", "Name", "AmountBought", "DiscountPercentage", "Price", "Currency", "Customer", "Employee", "Date"]
+          example: ["Id", "Name", "AmountBought", "DiscountPercentage", "Price", "Currency", "Customer", "Employee", "Date", "ItemInStore"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Name,AmountBought,DiscountPercentage,Price,Currency,Customer,Employee,Date"
+            example: "Id,Name,AmountBought,DiscountPercentage,Price,Currency,Customer,Employee,Date,ItemInStore"
         $order:
           type: string
           enum: ["asc", "desc"]
@@ -1164,9 +1196,6 @@ components:
           type: integer
           format: int32
         AmountInShop:
-          type: integer
-          format: int32
-        Purchase:
           type: integer
           format: int32
     ItemInStoreFilterOptions:
@@ -1229,14 +1258,6 @@ components:
                       items:
                         type: integer
                         format: int32
-                Purchase:
-                  oneOf:
-                    - type: integer
-                      format: int32
-                    - type: array
-                      items:
-                        type: integer
-                        format: int32
             notEquals:
               type: object
               properties:
@@ -1291,14 +1312,6 @@ components:
                       items:
                         type: integer
                         format: int32
-                Purchase:
-                  oneOf:
-                    - type: integer
-                      format: int32
-                    - type: array
-                      items:
-                        type: integer
-                        format: int32
             contains:
               type: object
               properties:
@@ -1311,7 +1324,6 @@ components:
                 Currency:
                 Product:
                 AmountInShop:
-                Purchase:
             greaterThan:
               type: object
               properties:
@@ -1332,9 +1344,6 @@ components:
                   type: integer
                   format: int32
                 AmountInShop:
-                  type: integer
-                  format: int32
-                Purchase:
                   type: integer
                   format: int32
             greaterThanOrEqual:
@@ -1359,9 +1368,6 @@ components:
                 AmountInShop:
                   type: integer
                   format: int32
-                Purchase:
-                  type: integer
-                  format: int32
             lessThan:
               type: object
               properties:
@@ -1382,9 +1388,6 @@ components:
                   type: integer
                   format: int32
                 AmountInShop:
-                  type: integer
-                  format: int32
-                Purchase:
                   type: integer
                   format: int32
             lessThanOrEqual:
@@ -1409,17 +1412,14 @@ components:
                 AmountInShop:
                   type: integer
                   format: int32
-                Purchase:
-                  type: integer
-                  format: int32
         $select:
           type: array
-          example: ["Id", "Name", "Price", "Currency", "Product", "AmountInShop", "Purchase"]
+          example: ["Id", "Name", "Price", "Currency", "Product", "AmountInShop"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Name,Price,Currency,Product,AmountInShop,Purchase"
+            example: "Id,Name,Price,Currency,Product,AmountInShop"
         $order:
           type: string
           enum: ["asc", "desc"]

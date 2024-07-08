@@ -54,6 +54,11 @@
                         "type": "DATE",
                         "nullable": true,
                         "name": "PURCHASE_DATE"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "PURCHASE_ITEMINSTORE"
                     }
                 ]
             },
@@ -93,11 +98,6 @@
                         "type": "INTEGER",
                         "nullable": true,
                         "name": "ITEMINSTORE_AMOUNTINSHOP"
-                    },
-                    {
-                        "type": "INTEGER",
-                        "nullable": true,
-                        "name": "ITEMINSTORE_PURCHASE"
                     }
                 ]
             },
@@ -129,6 +129,15 @@
                 "referencedColumns": "EMPLOYEE_ID"
             },
             {
+                "name": "Purchase_ItemInStore",
+                "type": "foreignKey",
+                "table": "CODBEX_PURCHASE",
+                "constraintName": "Purchase_ItemInStore",
+                "columns": "PURCHASE_ITEMINSTORE",
+                "referencedTable": "CODBEX_ITEMINSTORE",
+                "referencedColumns": "ITEMINSTORE_ID"
+            },
+            {
                 "name": "ItemInStore_Currency",
                 "type": "foreignKey",
                 "table": "CODBEX_ITEMINSTORE",
@@ -145,15 +154,6 @@
                 "columns": "ITEMINSTORE_PRODUCT",
                 "referencedTable": "CODBEX_PRODUCT",
                 "referencedColumns": "PRODUCT_ID"
-            },
-            {
-                "name": "ItemInStore_Purchase",
-                "type": "foreignKey",
-                "table": "CODBEX_ITEMINSTORE",
-                "constraintName": "ItemInStore_Purchase",
-                "columns": "ITEMINSTORE_PURCHASE",
-                "referencedTable": "CODBEX_PURCHASE",
-                "referencedColumns": "PURCHASE_ID"
             }
         ]
     },

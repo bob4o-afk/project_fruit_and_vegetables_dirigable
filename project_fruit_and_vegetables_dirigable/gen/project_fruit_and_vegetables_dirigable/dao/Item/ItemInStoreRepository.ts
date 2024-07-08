@@ -10,7 +10,6 @@ export interface ItemInStoreEntity {
     Currency?: number;
     Product?: number;
     AmountInShop?: number;
-    Purchase?: number;
 }
 
 export interface ItemInStoreCreateEntity {
@@ -19,7 +18,6 @@ export interface ItemInStoreCreateEntity {
     readonly Currency?: number;
     readonly Product?: number;
     readonly AmountInShop?: number;
-    readonly Purchase?: number;
 }
 
 export interface ItemInStoreUpdateEntity extends ItemInStoreCreateEntity {
@@ -35,7 +33,6 @@ export interface ItemInStoreEntityOptions {
             Currency?: number | number[];
             Product?: number | number[];
             AmountInShop?: number | number[];
-            Purchase?: number | number[];
         };
         notEquals?: {
             Id?: number | number[];
@@ -44,7 +41,6 @@ export interface ItemInStoreEntityOptions {
             Currency?: number | number[];
             Product?: number | number[];
             AmountInShop?: number | number[];
-            Purchase?: number | number[];
         };
         contains?: {
             Id?: number;
@@ -53,7 +49,6 @@ export interface ItemInStoreEntityOptions {
             Currency?: number;
             Product?: number;
             AmountInShop?: number;
-            Purchase?: number;
         };
         greaterThan?: {
             Id?: number;
@@ -62,7 +57,6 @@ export interface ItemInStoreEntityOptions {
             Currency?: number;
             Product?: number;
             AmountInShop?: number;
-            Purchase?: number;
         };
         greaterThanOrEqual?: {
             Id?: number;
@@ -71,7 +65,6 @@ export interface ItemInStoreEntityOptions {
             Currency?: number;
             Product?: number;
             AmountInShop?: number;
-            Purchase?: number;
         };
         lessThan?: {
             Id?: number;
@@ -80,7 +73,6 @@ export interface ItemInStoreEntityOptions {
             Currency?: number;
             Product?: number;
             AmountInShop?: number;
-            Purchase?: number;
         };
         lessThanOrEqual?: {
             Id?: number;
@@ -89,7 +81,6 @@ export interface ItemInStoreEntityOptions {
             Currency?: number;
             Product?: number;
             AmountInShop?: number;
-            Purchase?: number;
         };
     },
     $select?: (keyof ItemInStoreEntity)[],
@@ -149,11 +140,6 @@ export class ItemInStoreRepository {
             {
                 name: "AmountInShop",
                 column: "ITEMINSTORE_AMOUNTINSHOP",
-                type: "INTEGER",
-            },
-            {
-                name: "Purchase",
-                column: "ITEMINSTORE_PURCHASE",
                 type: "INTEGER",
             }
         ]
@@ -252,7 +238,7 @@ export class ItemInStoreRepository {
     }
 
     private async triggerEvent(data: ItemInStoreEntityEvent | ItemInStoreUpdateEntityEvent) {
-        const triggerExtensions = await extensions.loadExtensionModules("project_fruit_and_vegetables_dirigable-Purchase-ItemInStore", ["trigger"]);
+        const triggerExtensions = await extensions.loadExtensionModules("project_fruit_and_vegetables_dirigable-Item-ItemInStore", ["trigger"]);
         triggerExtensions.forEach(triggerExtension => {
             try {
                 triggerExtension.trigger(data);
@@ -260,6 +246,6 @@ export class ItemInStoreRepository {
                 console.error(error);
             }            
         });
-        producer.topic("project_fruit_and_vegetables_dirigable-Purchase-ItemInStore").send(JSON.stringify(data));
+        producer.topic("project_fruit_and_vegetables_dirigable-Item-ItemInStore").send(JSON.stringify(data));
     }
 }

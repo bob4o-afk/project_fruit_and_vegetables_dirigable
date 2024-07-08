@@ -1,6 +1,6 @@
 angular.module('page', ["ideUI", "ideView"])
 	.config(["messageHubProvider", function (messageHubProvider) {
-		messageHubProvider.eventIdPrefix = 'project_fruit_and_vegetables_dirigable.Purchase.Purchase';
+		messageHubProvider.eventIdPrefix = 'project_fruit_and_vegetables_dirigable.Item.ItemInStore';
 	}])
 	.controller('PageController', ['$scope', 'messageHub', 'ViewParameters', function ($scope, messageHub, ViewParameters) {
 
@@ -11,19 +11,9 @@ angular.module('page', ["ideUI", "ideView"])
 
 		let params = ViewParameters.get();
 		if (Object.keys(params).length) {
-			if (params?.entity?.DateFrom) {
-				params.entity.DateFrom = new Date(params.entity.DateFrom);
-			}
-			if (params?.entity?.DateTo) {
-				params.entity.DateTo = new Date(params.entity.DateTo);
-			}
 			$scope.entity = params.entity ?? {};
 			$scope.selectedMainEntityKey = params.selectedMainEntityKey;
 			$scope.selectedMainEntityId = params.selectedMainEntityId;
-			$scope.optionsCurrency = params.optionsCurrency;
-			$scope.optionsCustomer = params.optionsCustomer;
-			$scope.optionsEmployee = params.optionsEmployee;
-			$scope.optionsItemInStore = params.optionsItemInStore;
 		}
 
 		$scope.filter = function () {
@@ -52,32 +42,17 @@ angular.module('page', ["ideUI", "ideView"])
 			if (entity.Name) {
 				filter.$filter.contains.Name = entity.Name;
 			}
-			if (entity.AmountBought !== undefined) {
-				filter.$filter.equals.AmountBought = entity.AmountBought;
-			}
-			if (entity.DiscountPercentage !== undefined) {
-				filter.$filter.equals.DiscountPercentage = entity.DiscountPercentage;
-			}
 			if (entity.Price !== undefined) {
 				filter.$filter.equals.Price = entity.Price;
 			}
 			if (entity.Currency !== undefined) {
 				filter.$filter.equals.Currency = entity.Currency;
 			}
-			if (entity.Customer !== undefined) {
-				filter.$filter.equals.Customer = entity.Customer;
+			if (entity.Product !== undefined) {
+				filter.$filter.equals.Product = entity.Product;
 			}
-			if (entity.Employee !== undefined) {
-				filter.$filter.equals.Employee = entity.Employee;
-			}
-			if (entity.DateFrom) {
-				filter.$filter.greaterThanOrEqual.Date = entity.DateFrom;
-			}
-			if (entity.DateTo) {
-				filter.$filter.lessThanOrEqual.Date = entity.DateTo;
-			}
-			if (entity.ItemInStore !== undefined) {
-				filter.$filter.equals.ItemInStore = entity.ItemInStore;
+			if (entity.AmountInShop !== undefined) {
+				filter.$filter.equals.AmountInShop = entity.AmountInShop;
 			}
 			messageHub.postMessage("entitySearch", {
 				entity: entity,
@@ -93,7 +68,7 @@ angular.module('page', ["ideUI", "ideView"])
 		};
 
 		$scope.cancel = function () {
-			messageHub.closeDialogWindow("Purchase-filter");
+			messageHub.closeDialogWindow("ItemInStore-filter");
 		};
 
 		$scope.clearErrorMessage = function () {

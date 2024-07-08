@@ -115,6 +115,24 @@
                         "widgetLength": "20",
                         "widgetSize": "",
                         "widgetType": "DATE"
+                    },
+                    {
+                        "dataName": "PURCHASE_ITEMINSTORE",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "name": "ItemInStore",
+                        "relationshipCardinality": "1_n",
+                        "relationshipName": "Purchase_ItemInStore",
+                        "relationshipType": "COMPOSITION",
+                        "widgetDropDownKey": "Id",
+                        "widgetDropDownValue": "Name",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "DROPDOWN",
+                        "relationshipEntityName": "ItemInStore",
+                        "relationshipEntityPerspectiveName": "Item",
+                        "relationshipEntityPerspectiveLabel": "Entities"
                     }
                 ],
                 "caption": "Manage entity Purchase",
@@ -123,7 +141,7 @@
                 "dataQuery": "",
                 "generateReport": "false",
                 "icon": "/services/web/resources/unicons/file.svg",
-                "layoutType": "MANAGE",
+                "layoutType": "MANAGE_MASTER",
                 "menuIndex": "100",
                 "menuKey": "purchase",
                 "menuLabel": "Purchase",
@@ -210,22 +228,6 @@
                         "widgetLength": "20",
                         "widgetSize": "",
                         "widgetType": "NUMBER"
-                    },
-                    {
-                        "dataName": "ITEMINSTORE_PURCHASE",
-                        "dataNullable": "true",
-                        "dataType": "INTEGER",
-                        "name": "Purchase",
-                        "relationshipCardinality": "1_n",
-                        "relationshipName": "ItemInStore_Purchase",
-                        "relationshipType": "COMPOSITION",
-                        "widgetIsMajor": "true",
-                        "widgetLength": "20",
-                        "widgetSize": "",
-                        "widgetType": "TEXTBOX",
-                        "relationshipEntityName": "Purchase",
-                        "relationshipEntityPerspectiveName": "Purchase",
-                        "relationshipEntityPerspectiveLabel": "Entities"
                     }
                 ],
                 "caption": "Manage entity ItemInStore",
@@ -234,20 +236,20 @@
                 "dataQuery": "",
                 "generateReport": "false",
                 "icon": "/services/web/resources/unicons/file.svg",
-                "layoutType": "MANAGE",
+                "layoutType": "MANAGE_MASTER",
                 "menuIndex": "100",
                 "menuKey": "iteminstore",
                 "menuLabel": "ItemInStore",
                 "name": "ItemInStore",
                 "navigationPath": "/Home",
-                "perspectiveIcon": "/services/web/resources/unicons/puzzle-piece.svg",
-                "perspectiveLabel": "Purchase",
-                "perspectiveName": "Purchase",
-                "perspectiveOrder": "100",
+                "perspectiveIcon": "/services/web/resources/unicons/eye.svg",
+                "perspectiveLabel": "Item",
+                "perspectiveName": "Item",
+                "perspectiveOrder": "300",
                 "perspectiveRole": "",
                 "title": "ItemInStore",
                 "tooltip": "ItemInStore",
-                "type": "DEPENDENT"
+                "type": "PRIMARY"
             },
             {
                 "properties": [

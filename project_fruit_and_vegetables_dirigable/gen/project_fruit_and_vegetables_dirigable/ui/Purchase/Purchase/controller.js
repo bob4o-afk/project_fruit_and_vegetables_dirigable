@@ -9,12 +9,13 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 
 		$scope.dataPage = 1;
 		$scope.dataCount = 0;
-		$scope.dataLimit = 20;
+		$scope.dataOffset = 0;
+		$scope.dataLimit = 10;
+		$scope.action = "select";
 
 		//-----------------Custom Actions-------------------//
 		Extensions.get('dialogWindow', 'project_fruit_and_vegetables_dirigable-custom-action').then(function (response) {
 			$scope.pageActions = response.filter(e => e.perspective === "Purchase" && e.view === "Purchase" && (e.type === "page" || e.type === undefined));
-			$scope.entityActions = response.filter(e => e.perspective === "Purchase" && e.view === "Purchase" && e.type === "entity");
 		});
 
 		$scope.triggerPageAction = function (action) {
@@ -26,33 +27,35 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				action
 			);
 		};
-
-		$scope.triggerEntityAction = function (action) {
-			messageHub.showDialogWindow(
-				action.id,
-				{
-					id: $scope.entity.Id
-				},
-				null,
-				true,
-				action
-			);
-		};
 		//-----------------Custom Actions-------------------//
 
+		function refreshData() {
+			$scope.dataReset = true;
+			$scope.dataPage--;
+		}
+
 		function resetPagination() {
+			$scope.dataReset = true;
 			$scope.dataPage = 1;
 			$scope.dataCount = 0;
-			$scope.dataLimit = 20;
+			$scope.dataLimit = 10;
 		}
-		resetPagination();
 
 		//-----------------Events-------------------//
+		messageHub.onDidReceiveMessage("clearDetails", function (msg) {
+			$scope.$apply(function () {
+				$scope.selectedEntity = null;
+				$scope.action = "select";
+			});
+		});
+
 		messageHub.onDidReceiveMessage("entityCreated", function (msg) {
+			refreshData();
 			$scope.loadPage($scope.dataPage, $scope.filter);
 		});
 
 		messageHub.onDidReceiveMessage("entityUpdated", function (msg) {
+			refreshData();
 			$scope.loadPage($scope.dataPage, $scope.filter);
 		});
 
@@ -68,7 +71,10 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			if (!filter && $scope.filter) {
 				filter = $scope.filter;
 			}
-			$scope.dataPage = pageNumber;
+			if (!filter) {
+				filter = {};
+			}
+			$scope.selectedEntity = null;
 			entityApi.count(filter).then(function (response) {
 				if (response.status != 200) {
 					messageHub.showAlertError("Purchase", `Unable to count Purchase: '${response.message}'`);
@@ -77,20 +83,22 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				if (response.data) {
 					$scope.dataCount = response.data;
 				}
-				let offset = (pageNumber - 1) * $scope.dataLimit;
-				let limit = $scope.dataLimit;
-				let request;
-				if (filter) {
-					filter.$offset = offset;
-					filter.$limit = limit;
-					request = entityApi.search(filter);
-				} else {
-					request = entityApi.list(offset, limit);
+				$scope.dataPages = Math.ceil($scope.dataCount / $scope.dataLimit);
+				filter.$offset = ($scope.dataPage - 1) * $scope.dataLimit;
+				filter.$limit = $scope.dataLimit;
+				if ($scope.dataReset) {
+					filter.$offset = 0;
+					filter.$limit = $scope.dataPage * $scope.dataLimit;
 				}
-				request.then(function (response) {
+
+				entityApi.search(filter).then(function (response) {
 					if (response.status != 200) {
 						messageHub.showAlertError("Purchase", `Unable to list/filter Purchase: '${response.message}'`);
 						return;
+					}
+					if ($scope.data == null || $scope.dataReset) {
+						$scope.data = [];
+						$scope.dataReset = false;
 					}
 
 					response.data.forEach(e => {
@@ -99,7 +107,8 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 						}
 					});
 
-					$scope.data = response.data;
+					$scope.data = $scope.data.concat(response.data);
+					$scope.dataPage++;
 				});
 			});
 		};
@@ -107,51 +116,42 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 
 		$scope.selectEntity = function (entity) {
 			$scope.selectedEntity = entity;
-		};
-
-		$scope.openDetails = function (entity) {
-			$scope.selectedEntity = entity;
-			messageHub.showDialogWindow("Purchase-details", {
-				action: "select",
+			messageHub.postMessage("entitySelected", {
 				entity: entity,
+				selectedMainEntityId: entity.Id,
 				optionsCurrency: $scope.optionsCurrency,
 				optionsCustomer: $scope.optionsCustomer,
 				optionsEmployee: $scope.optionsEmployee,
-			});
-		};
-
-		$scope.openFilter = function (entity) {
-			messageHub.showDialogWindow("Purchase-filter", {
-				entity: $scope.filterEntity,
-				optionsCurrency: $scope.optionsCurrency,
-				optionsCustomer: $scope.optionsCustomer,
-				optionsEmployee: $scope.optionsEmployee,
+				optionsItemInStore: $scope.optionsItemInStore,
 			});
 		};
 
 		$scope.createEntity = function () {
 			$scope.selectedEntity = null;
-			messageHub.showDialogWindow("Purchase-details", {
-				action: "create",
+			$scope.action = "create";
+
+			messageHub.postMessage("createEntity", {
 				entity: {},
 				optionsCurrency: $scope.optionsCurrency,
 				optionsCustomer: $scope.optionsCustomer,
 				optionsEmployee: $scope.optionsEmployee,
-			}, null, false);
+				optionsItemInStore: $scope.optionsItemInStore,
+			});
 		};
 
-		$scope.updateEntity = function (entity) {
-			messageHub.showDialogWindow("Purchase-details", {
-				action: "update",
-				entity: entity,
+		$scope.updateEntity = function () {
+			$scope.action = "update";
+			messageHub.postMessage("updateEntity", {
+				entity: $scope.selectedEntity,
 				optionsCurrency: $scope.optionsCurrency,
 				optionsCustomer: $scope.optionsCustomer,
 				optionsEmployee: $scope.optionsEmployee,
-			}, null, false);
+				optionsItemInStore: $scope.optionsItemInStore,
+			});
 		};
 
-		$scope.deleteEntity = function (entity) {
-			let id = entity.Id;
+		$scope.deleteEntity = function () {
+			let id = $scope.selectedEntity.Id;
 			messageHub.showDialogAsync(
 				'Delete Purchase?',
 				`Are you sure you want to delete Purchase? This action cannot be undone.`,
@@ -172,6 +172,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 							messageHub.showAlertError("Purchase", `Unable to delete Purchase: '${response.message}'`);
 							return;
 						}
+						refreshData();
 						$scope.loadPage($scope.dataPage, $scope.filter);
 						messageHub.postMessage("clearDetails");
 					});
@@ -179,10 +180,21 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			});
 		};
 
+		$scope.openFilter = function (entity) {
+			messageHub.showDialogWindow("Purchase-filter", {
+				entity: $scope.filterEntity,
+				optionsCurrency: $scope.optionsCurrency,
+				optionsCustomer: $scope.optionsCustomer,
+				optionsEmployee: $scope.optionsEmployee,
+				optionsItemInStore: $scope.optionsItemInStore,
+			});
+		};
+
 		//----------------Dropdowns-----------------//
 		$scope.optionsCurrency = [];
 		$scope.optionsCustomer = [];
 		$scope.optionsEmployee = [];
+		$scope.optionsItemInStore = [];
 
 
 		$http.get("/services/ts/codbex-currencies/gen/codbex-currencies/api/Currencies/CurrencyService.ts").then(function (response) {
@@ -212,6 +224,15 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			});
 		});
 
+		$http.get("/services/ts/project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Item/ItemInStoreService.ts").then(function (response) {
+			$scope.optionsItemInStore = response.data.map(e => {
+				return {
+					value: e.Id,
+					text: e.Name
+				}
+			});
+		});
+
 		$scope.optionsCurrencyValue = function (optionKey) {
 			for (let i = 0; i < $scope.optionsCurrency.length; i++) {
 				if ($scope.optionsCurrency[i].value === optionKey) {
@@ -232,6 +253,14 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			for (let i = 0; i < $scope.optionsEmployee.length; i++) {
 				if ($scope.optionsEmployee[i].value === optionKey) {
 					return $scope.optionsEmployee[i].text;
+				}
+			}
+			return null;
+		};
+		$scope.optionsItemInStoreValue = function (optionKey) {
+			for (let i = 0; i < $scope.optionsItemInStore.length; i++) {
+				if ($scope.optionsItemInStore[i].value === optionKey) {
+					return $scope.optionsItemInStore[i].text;
 				}
 			}
 			return null;

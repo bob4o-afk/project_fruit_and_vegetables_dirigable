@@ -4,12 +4,12 @@
  * Do not modify the content as it may be re-generated again.
  */
 const viewData = {
-    id: "Purchase",
-    label: "Purchase",
+    id: "ItemInStore-details",
+    label: "ItemInStore",
     factory: "frame",
-    region: "left",
-    link: "/services/web/project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/ui/Purchase/Purchase/index.html",
-    perspectiveName: "Purchase",
+    region: "center",
+    link: "/services/web/project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/ui/Item/ItemInStore/main-details/index.html",
+    perspectiveName: "Item",
 };
 
 if (typeof exports !== 'undefined') {

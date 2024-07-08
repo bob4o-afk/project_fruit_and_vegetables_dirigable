@@ -50,13 +50,10 @@
 						<fd-list-content
 							item-title="{{next.Name}}">
 							<fd-list-byline dg-align="left">
-								{{next.AmountBought}} |
-								{{next.DiscountPercentage}} |
 								{{next.Price}} |
-								{{optionsCurrencyValue(next.Currency)}} |
-								{{optionsCustomerValue(next.Customer)}} |
-								{{optionsEmployeeValue(next.Employee)}} |
-								{{next.Date | date: "dd/MMM/yyyy"}}
+								{{next.Currency}} |
+								{{next.Product}} |
+								{{next.AmountInShop}}
 							</fd-list-byline>
 						</fd-list-content>
 					</fd-list-link>
