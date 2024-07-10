@@ -133,6 +133,22 @@
                         "relationshipEntityName": "ItemInStore",
                         "relationshipEntityPerspectiveName": "Item",
                         "relationshipEntityPerspectiveLabel": "Entities"
+                    },
+                    {
+                        "dataName": "PURCHASE_PURCHASESTATUS",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "name": "PurchaseStatus",
+                        "widgetDropDownKey": "Id",
+                        "widgetDropDownValue": "Name",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "DROPDOWN",
+                        "relationshipName": "Purchase_PurchaseStatus",
+                        "relationshipEntityName": "PurchaseStatus",
+                        "relationshipEntityPerspectiveName": "PurchaseStatus",
+                        "relationshipEntityPerspectiveLabel": "Entities"
                     }
                 ],
                 "caption": "Manage entity Purchase",
@@ -228,6 +244,22 @@
                         "widgetLength": "20",
                         "widgetSize": "",
                         "widgetType": "NUMBER"
+                    },
+                    {
+                        "dataName": "ITEMINSTORE_ITEMSTATUS",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "name": "ItemStatus",
+                        "widgetDropDownKey": "Id",
+                        "widgetDropDownValue": "Name",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "DROPDOWN",
+                        "relationshipName": "ItemInStore_ItemStatus",
+                        "relationshipEntityName": "ItemStatus",
+                        "relationshipEntityPerspectiveName": "ItemStatus",
+                        "relationshipEntityPerspectiveLabel": "Entities"
                     }
                 ],
                 "caption": "Manage entity ItemInStore",
@@ -918,6 +950,100 @@
                 "title": "Product",
                 "tooltip": "Product",
                 "type": "PROJECTION"
+            },
+            {
+                "properties": [
+                    {
+                        "dataAutoIncrement": "true",
+                        "dataName": "PURCHASESTATUS_ID",
+                        "dataNullable": "true",
+                        "dataPrimaryKey": "true",
+                        "dataType": "INTEGER",
+                        "name": "Id",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    },
+                    {
+                        "dataLength": "20",
+                        "dataName": "PURCHASESTATUS_NAME",
+                        "dataNullable": "true",
+                        "dataType": "VARCHAR",
+                        "name": "Name",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    }
+                ],
+                "caption": "Manage entity PurchaseStatus",
+                "dataCount": "SELECT COUNT(*) AS COUNT FROM \"${tablePrefix}PURCHASESTATUS\"",
+                "dataName": "PURCHASESTATUS",
+                "dataQuery": "",
+                "generateReport": "false",
+                "icon": "/services/web/resources/unicons/file.svg",
+                "layoutType": "MANAGE_MASTER",
+                "menuIndex": "100",
+                "menuKey": "purchasestatus",
+                "menuLabel": "PurchaseStatus",
+                "name": "PurchaseStatus",
+                "navigationPath": "/Home",
+                "perspectiveIcon": "/services/web/resources/unicons/envelope-redo.svg",
+                "perspectiveLabel": "PurchaseStatus",
+                "perspectiveName": "PurchaseStatus",
+                "perspectiveOrder": "150",
+                "perspectiveRole": "",
+                "title": "PurchaseStatus",
+                "tooltip": "PurchaseStatus",
+                "type": "PRIMARY"
+            },
+            {
+                "properties": [
+                    {
+                        "dataAutoIncrement": "true",
+                        "dataName": "ITEMSTATUS_ID",
+                        "dataNullable": "true",
+                        "dataPrimaryKey": "true",
+                        "dataType": "INTEGER",
+                        "name": "Id",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    },
+                    {
+                        "dataLength": "20",
+                        "dataName": "ITEMSTATUS_NAME",
+                        "dataNullable": "true",
+                        "dataType": "VARCHAR",
+                        "name": "Name",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    }
+                ],
+                "caption": "Manage entity ItemStatus",
+                "dataCount": "SELECT COUNT(*) AS COUNT FROM \"${tablePrefix}ITEMSTATUS\"",
+                "dataName": "ITEMSTATUS",
+                "dataQuery": "",
+                "generateReport": "false",
+                "icon": "/services/web/resources/unicons/file.svg",
+                "layoutType": "MANAGE_MASTER",
+                "menuIndex": "100",
+                "menuKey": "itemstatus",
+                "menuLabel": "ItemStatus",
+                "name": "ItemStatus",
+                "navigationPath": "/Home",
+                "perspectiveIcon": "/services/web/resources/unicons/monitor-heart-rate.svg",
+                "perspectiveLabel": "ItemStatus",
+                "perspectiveName": "ItemStatus",
+                "perspectiveOrder": "350",
+                "perspectiveRole": "",
+                "title": "ItemStatus",
+                "tooltip": "ItemStatus",
+                "type": "PRIMARY"
             }
         ],
         "perspectives": [
@@ -933,6 +1059,20 @@
                 "label": "Item",
                 "icon": "/services/web/resources/unicons/eye.svg",
                 "order": "300",
+                "role": {}
+            },
+            {
+                "name": "PurchaseStatus",
+                "label": "PurchaseStatus",
+                "icon": "/services/web/resources/unicons/envelope-redo.svg",
+                "order": "150",
+                "role": {}
+            },
+            {
+                "name": "ItemStatus",
+                "label": "ItemStatus",
+                "icon": "/services/web/resources/unicons/monitor-heart-rate.svg",
+                "order": "350",
                 "role": {}
             }
         ],

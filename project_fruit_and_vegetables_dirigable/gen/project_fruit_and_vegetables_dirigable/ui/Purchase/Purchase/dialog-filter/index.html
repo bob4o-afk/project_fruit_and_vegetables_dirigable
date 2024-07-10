@@ -174,6 +174,20 @@
 	                        </fd-combobox-input>
 	                    </div>
                     </fd-form-item>
+                    <fd-form-item class="fd-row">
+                    	<div class="fd-col fd-col-md--2">
+                        	<fd-form-label for="idPurchaseStatus" dg-colon="true">PurchaseStatus</fd-form-label>
+                        </div>
+                        <div class="fd-col fd-col-md--8">
+	                        <fd-combobox-input id="idPurchaseStatus"
+	                            name="PurchaseStatus"
+	                            state="{{ forms.details['PurchaseStatus'].$valid ? '' : 'error' }}"
+	                            ng-model="entity.PurchaseStatus"
+	                            dropdown-items="optionsPurchaseStatus"
+	                            dg-placeholder="Search PurchaseStatus ...">
+	                        </fd-combobox-input>
+	                    </div>
+                    </fd-form-item>
                 </fd-form-group>
             </fd-fieldset>
         </fd-scrollbar>

@@ -10,6 +10,7 @@ export interface ItemInStoreEntity {
     Currency?: number;
     Product?: number;
     AmountInShop?: number;
+    ItemStatus?: number;
 }
 
 export interface ItemInStoreCreateEntity {
@@ -18,6 +19,7 @@ export interface ItemInStoreCreateEntity {
     readonly Currency?: number;
     readonly Product?: number;
     readonly AmountInShop?: number;
+    readonly ItemStatus?: number;
 }
 
 export interface ItemInStoreUpdateEntity extends ItemInStoreCreateEntity {
@@ -33,6 +35,7 @@ export interface ItemInStoreEntityOptions {
             Currency?: number | number[];
             Product?: number | number[];
             AmountInShop?: number | number[];
+            ItemStatus?: number | number[];
         };
         notEquals?: {
             Id?: number | number[];
@@ -41,6 +44,7 @@ export interface ItemInStoreEntityOptions {
             Currency?: number | number[];
             Product?: number | number[];
             AmountInShop?: number | number[];
+            ItemStatus?: number | number[];
         };
         contains?: {
             Id?: number;
@@ -49,6 +53,7 @@ export interface ItemInStoreEntityOptions {
             Currency?: number;
             Product?: number;
             AmountInShop?: number;
+            ItemStatus?: number;
         };
         greaterThan?: {
             Id?: number;
@@ -57,6 +62,7 @@ export interface ItemInStoreEntityOptions {
             Currency?: number;
             Product?: number;
             AmountInShop?: number;
+            ItemStatus?: number;
         };
         greaterThanOrEqual?: {
             Id?: number;
@@ -65,6 +71,7 @@ export interface ItemInStoreEntityOptions {
             Currency?: number;
             Product?: number;
             AmountInShop?: number;
+            ItemStatus?: number;
         };
         lessThan?: {
             Id?: number;
@@ -73,6 +80,7 @@ export interface ItemInStoreEntityOptions {
             Currency?: number;
             Product?: number;
             AmountInShop?: number;
+            ItemStatus?: number;
         };
         lessThanOrEqual?: {
             Id?: number;
@@ -81,6 +89,7 @@ export interface ItemInStoreEntityOptions {
             Currency?: number;
             Product?: number;
             AmountInShop?: number;
+            ItemStatus?: number;
         };
     },
     $select?: (keyof ItemInStoreEntity)[],
@@ -140,6 +149,11 @@ export class ItemInStoreRepository {
             {
                 name: "AmountInShop",
                 column: "ITEMINSTORE_AMOUNTINSHOP",
+                type: "INTEGER",
+            },
+            {
+                name: "ItemStatus",
+                column: "ITEMINSTORE_ITEMSTATUS",
                 type: "INTEGER",
             }
         ]

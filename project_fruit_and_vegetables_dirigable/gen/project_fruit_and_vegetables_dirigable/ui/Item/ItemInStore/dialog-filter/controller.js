@@ -14,6 +14,7 @@ angular.module('page', ["ideUI", "ideView"])
 			$scope.entity = params.entity ?? {};
 			$scope.selectedMainEntityKey = params.selectedMainEntityKey;
 			$scope.selectedMainEntityId = params.selectedMainEntityId;
+			$scope.optionsItemStatus = params.optionsItemStatus;
 		}
 
 		$scope.filter = function () {
@@ -53,6 +54,9 @@ angular.module('page', ["ideUI", "ideView"])
 			}
 			if (entity.AmountInShop !== undefined) {
 				filter.$filter.equals.AmountInShop = entity.AmountInShop;
+			}
+			if (entity.ItemStatus !== undefined) {
+				filter.$filter.equals.ItemStatus = entity.ItemStatus;
 			}
 			messageHub.postMessage("entitySearch", {
 				entity: entity,

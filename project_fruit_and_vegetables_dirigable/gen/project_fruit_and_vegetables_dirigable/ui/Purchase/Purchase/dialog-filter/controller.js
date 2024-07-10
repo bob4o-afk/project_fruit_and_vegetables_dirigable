@@ -24,6 +24,7 @@ angular.module('page', ["ideUI", "ideView"])
 			$scope.optionsCustomer = params.optionsCustomer;
 			$scope.optionsEmployee = params.optionsEmployee;
 			$scope.optionsItemInStore = params.optionsItemInStore;
+			$scope.optionsPurchaseStatus = params.optionsPurchaseStatus;
 		}
 
 		$scope.filter = function () {
@@ -78,6 +79,9 @@ angular.module('page', ["ideUI", "ideView"])
 			}
 			if (entity.ItemInStore !== undefined) {
 				filter.$filter.equals.ItemInStore = entity.ItemInStore;
+			}
+			if (entity.PurchaseStatus !== undefined) {
+				filter.$filter.equals.PurchaseStatus = entity.PurchaseStatus;
 			}
 			messageHub.postMessage("entitySearch", {
 				entity: entity,

@@ -123,6 +123,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				optionsCustomer: $scope.optionsCustomer,
 				optionsEmployee: $scope.optionsEmployee,
 				optionsItemInStore: $scope.optionsItemInStore,
+				optionsPurchaseStatus: $scope.optionsPurchaseStatus,
 			});
 		};
 
@@ -136,6 +137,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				optionsCustomer: $scope.optionsCustomer,
 				optionsEmployee: $scope.optionsEmployee,
 				optionsItemInStore: $scope.optionsItemInStore,
+				optionsPurchaseStatus: $scope.optionsPurchaseStatus,
 			});
 		};
 
@@ -147,6 +149,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				optionsCustomer: $scope.optionsCustomer,
 				optionsEmployee: $scope.optionsEmployee,
 				optionsItemInStore: $scope.optionsItemInStore,
+				optionsPurchaseStatus: $scope.optionsPurchaseStatus,
 			});
 		};
 
@@ -187,6 +190,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				optionsCustomer: $scope.optionsCustomer,
 				optionsEmployee: $scope.optionsEmployee,
 				optionsItemInStore: $scope.optionsItemInStore,
+				optionsPurchaseStatus: $scope.optionsPurchaseStatus,
 			});
 		};
 
@@ -195,6 +199,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		$scope.optionsCustomer = [];
 		$scope.optionsEmployee = [];
 		$scope.optionsItemInStore = [];
+		$scope.optionsPurchaseStatus = [];
 
 
 		$http.get("/services/ts/codbex-currencies/gen/codbex-currencies/api/Currencies/CurrencyService.ts").then(function (response) {
@@ -233,6 +238,15 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			});
 		});
 
+		$http.get("/services/ts/project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/PurchaseStatus/PurchaseStatusService.ts").then(function (response) {
+			$scope.optionsPurchaseStatus = response.data.map(e => {
+				return {
+					value: e.Id,
+					text: e.Name
+				}
+			});
+		});
+
 		$scope.optionsCurrencyValue = function (optionKey) {
 			for (let i = 0; i < $scope.optionsCurrency.length; i++) {
 				if ($scope.optionsCurrency[i].value === optionKey) {
@@ -261,6 +275,14 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			for (let i = 0; i < $scope.optionsItemInStore.length; i++) {
 				if ($scope.optionsItemInStore[i].value === optionKey) {
 					return $scope.optionsItemInStore[i].text;
+				}
+			}
+			return null;
+		};
+		$scope.optionsPurchaseStatusValue = function (optionKey) {
+			for (let i = 0; i < $scope.optionsPurchaseStatus.length; i++) {
+				if ($scope.optionsPurchaseStatus[i].value === optionKey) {
+					return $scope.optionsPurchaseStatus[i].text;
 				}
 			}
 			return null;

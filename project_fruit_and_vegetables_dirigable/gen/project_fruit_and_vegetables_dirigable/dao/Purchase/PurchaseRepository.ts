@@ -15,6 +15,7 @@ export interface PurchaseEntity {
     Employee?: number;
     Date?: Date;
     ItemInStore?: number;
+    PurchaseStatus?: number;
 }
 
 export interface PurchaseCreateEntity {
@@ -27,6 +28,7 @@ export interface PurchaseCreateEntity {
     readonly Employee?: number;
     readonly Date?: Date;
     readonly ItemInStore?: number;
+    readonly PurchaseStatus?: number;
 }
 
 export interface PurchaseUpdateEntity extends PurchaseCreateEntity {
@@ -46,6 +48,7 @@ export interface PurchaseEntityOptions {
             Employee?: number | number[];
             Date?: Date | Date[];
             ItemInStore?: number | number[];
+            PurchaseStatus?: number | number[];
         };
         notEquals?: {
             Id?: number | number[];
@@ -58,6 +61,7 @@ export interface PurchaseEntityOptions {
             Employee?: number | number[];
             Date?: Date | Date[];
             ItemInStore?: number | number[];
+            PurchaseStatus?: number | number[];
         };
         contains?: {
             Id?: number;
@@ -70,6 +74,7 @@ export interface PurchaseEntityOptions {
             Employee?: number;
             Date?: Date;
             ItemInStore?: number;
+            PurchaseStatus?: number;
         };
         greaterThan?: {
             Id?: number;
@@ -82,6 +87,7 @@ export interface PurchaseEntityOptions {
             Employee?: number;
             Date?: Date;
             ItemInStore?: number;
+            PurchaseStatus?: number;
         };
         greaterThanOrEqual?: {
             Id?: number;
@@ -94,6 +100,7 @@ export interface PurchaseEntityOptions {
             Employee?: number;
             Date?: Date;
             ItemInStore?: number;
+            PurchaseStatus?: number;
         };
         lessThan?: {
             Id?: number;
@@ -106,6 +113,7 @@ export interface PurchaseEntityOptions {
             Employee?: number;
             Date?: Date;
             ItemInStore?: number;
+            PurchaseStatus?: number;
         };
         lessThanOrEqual?: {
             Id?: number;
@@ -118,6 +126,7 @@ export interface PurchaseEntityOptions {
             Employee?: number;
             Date?: Date;
             ItemInStore?: number;
+            PurchaseStatus?: number;
         };
     },
     $select?: (keyof PurchaseEntity)[],
@@ -197,6 +206,11 @@ export class PurchaseRepository {
             {
                 name: "ItemInStore",
                 column: "PURCHASE_ITEMINSTORE",
+                type: "INTEGER",
+            },
+            {
+                name: "PurchaseStatus",
+                column: "PURCHASE_PURCHASESTATUS",
                 type: "INTEGER",
             }
         ]
