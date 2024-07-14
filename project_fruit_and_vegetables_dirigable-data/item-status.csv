@@ -1,0 +1,5 @@
+ITEMSTATUS_ID, ITEMSTATUS_NAME
+1,outOfStock
+2,almostOutOfStock
+3,loaded
+4,waitingToBeDelivered
