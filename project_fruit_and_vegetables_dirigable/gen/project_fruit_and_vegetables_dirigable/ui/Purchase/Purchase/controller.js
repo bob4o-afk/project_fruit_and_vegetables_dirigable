@@ -238,7 +238,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			});
 		});
 
-		$http.get("/services/ts/project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/PurchaseStatus/PurchaseStatusService.ts").then(function (response) {
+		$http.get("/services/ts/project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Settings/PurchaseStatusService.ts").then(function (response) {
 			$scope.optionsPurchaseStatus = response.data.map(e => {
 				return {
 					value: e.Id,

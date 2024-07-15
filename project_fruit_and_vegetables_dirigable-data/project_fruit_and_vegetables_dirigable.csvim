@@ -1,0 +1,26 @@
+{
+  "files": [
+    {
+      "table": "CODBEX_PURCHASESTATUS",
+      "schema": "PUBLIC",
+      "file": "/project_fruit_and_vegetables_dirigable-data/purchase-status.csv",
+      "header": true,
+      "useHeaderNames": true,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": "1.0"
+    },
+    {
+      "table": "CODBEX_ITEMSTATUS",
+      "schema": "PUBLIC",
+      "file": "/project_fruit_and_vegetables_dirigable-data/item-status.csv",
+      "header": true,
+      "useHeaderNames": true,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": "1.0"
+    }
+  ]
+}

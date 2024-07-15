@@ -1,5 +1,4 @@
-ITEMSTATUS_ID, ITEMSTATUS_NAME
-1,outOfStock
-2,almostOutOfStock
-3,loaded
-4,waitingToBeDelivered
+"ITEMSTATUS_ID"," ITEMSTATUS_NAME"
+"1","Available"
+"2","Out of Stock"
+"3","Pre-Order"

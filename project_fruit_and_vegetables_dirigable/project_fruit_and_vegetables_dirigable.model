@@ -147,7 +147,7 @@
                         "widgetType": "DROPDOWN",
                         "relationshipName": "Purchase_PurchaseStatus",
                         "relationshipEntityName": "PurchaseStatus",
-                        "relationshipEntityPerspectiveName": "PurchaseStatus",
+                        "relationshipEntityPerspectiveName": "Settings",
                         "relationshipEntityPerspectiveLabel": "Entities"
                     }
                 ],
@@ -258,7 +258,7 @@
                         "widgetType": "DROPDOWN",
                         "relationshipName": "ItemInStore_ItemStatus",
                         "relationshipEntityName": "ItemStatus",
-                        "relationshipEntityPerspectiveName": "ItemStatus",
+                        "relationshipEntityPerspectiveName": "Settings",
                         "relationshipEntityPerspectiveLabel": "Entities"
                     }
                 ],
@@ -966,13 +966,13 @@
                         "widgetType": "TEXTBOX"
                     },
                     {
-                        "dataLength": "20",
+                        "dataLength": "200",
                         "dataName": "PURCHASESTATUS_NAME",
                         "dataNullable": "true",
                         "dataType": "VARCHAR",
                         "name": "Name",
                         "widgetIsMajor": "true",
-                        "widgetLength": "20",
+                        "widgetLength": "200",
                         "widgetSize": "",
                         "widgetType": "TEXTBOX"
                     }
@@ -989,14 +989,14 @@
                 "menuLabel": "PurchaseStatus",
                 "name": "PurchaseStatus",
                 "navigationPath": "/Home",
-                "perspectiveIcon": "/services/web/resources/unicons/envelope-redo.svg",
-                "perspectiveLabel": "PurchaseStatus",
-                "perspectiveName": "PurchaseStatus",
-                "perspectiveOrder": "150",
+                "perspectiveIcon": "/services/web/resources/unicons/wrench.svg",
+                "perspectiveLabel": "Settings",
+                "perspectiveName": "Settings",
+                "perspectiveOrder": "999",
                 "perspectiveRole": "",
                 "title": "PurchaseStatus",
                 "tooltip": "PurchaseStatus",
-                "type": "PRIMARY"
+                "type": "SETTING"
             },
             {
                 "properties": [
@@ -1013,13 +1013,13 @@
                         "widgetType": "TEXTBOX"
                     },
                     {
-                        "dataLength": "20",
+                        "dataLength": "200",
                         "dataName": "ITEMSTATUS_NAME",
                         "dataNullable": "true",
                         "dataType": "VARCHAR",
                         "name": "Name",
                         "widgetIsMajor": "true",
-                        "widgetLength": "20",
+                        "widgetLength": "200",
                         "widgetSize": "",
                         "widgetType": "TEXTBOX"
                     }
@@ -1036,14 +1036,14 @@
                 "menuLabel": "ItemStatus",
                 "name": "ItemStatus",
                 "navigationPath": "/Home",
-                "perspectiveIcon": "/services/web/resources/unicons/monitor-heart-rate.svg",
-                "perspectiveLabel": "ItemStatus",
-                "perspectiveName": "ItemStatus",
-                "perspectiveOrder": "350",
+                "perspectiveIcon": "/services/web/resources/unicons/wrench.svg",
+                "perspectiveLabel": "Settings",
+                "perspectiveName": "Settings",
+                "perspectiveOrder": "999",
                 "perspectiveRole": "",
                 "title": "ItemStatus",
                 "tooltip": "ItemStatus",
-                "type": "PRIMARY"
+                "type": "SETTING"
             }
         ],
         "perspectives": [
@@ -1062,17 +1062,10 @@
                 "role": {}
             },
             {
-                "name": "PurchaseStatus",
-                "label": "PurchaseStatus",
-                "icon": "/services/web/resources/unicons/envelope-redo.svg",
-                "order": "150",
-                "role": {}
-            },
-            {
-                "name": "ItemStatus",
-                "label": "ItemStatus",
-                "icon": "/services/web/resources/unicons/monitor-heart-rate.svg",
-                "order": "350",
+                "name": "Settings",
+                "label": "Settings",
+                "icon": "/services/web/resources/unicons/wrench.svg",
+                "order": "999",
                 "role": {}
             }
         ],

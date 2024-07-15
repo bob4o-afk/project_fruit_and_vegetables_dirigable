@@ -1,0 +1,5 @@
+{
+    "module": "project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/ui/Settings/ItemStatus/dialog-filter/view.js",
+    "extensionPoint": "project_fruit_and_vegetables_dirigable-dialog-window",
+    "description": "project_fruit_and_vegetables_dirigable - Application Dialog Window"
+}

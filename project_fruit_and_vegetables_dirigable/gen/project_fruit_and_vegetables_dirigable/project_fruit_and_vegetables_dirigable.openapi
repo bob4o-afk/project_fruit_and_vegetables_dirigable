@@ -11,8 +11,8 @@ servers:
 tags:
   - name: Purchase
   - name: Item
-  - name: PurchaseStatus
-  - name: ItemStatus
+  - name: Settings
+  - name: Settings
 paths:
   /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Purchase/PurchaseService.ts:
     get:
@@ -814,7 +814,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/PurchaseStatus/PurchaseStatusService.ts:
+  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Settings/PurchaseStatusService.ts:
     get:
       summary: List PurchaseStatus
       parameters:
@@ -835,7 +835,7 @@ paths:
             type: integer
             allowEmptyValue: true
       tags:
-        - PurchaseStatus
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -866,7 +866,7 @@ paths:
     post:
       summary: Create PurchaseStatus
       tags:
-        - PurchaseStatus
+        - Settings
       requestBody:
         content:
           application/json:
@@ -898,7 +898,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/PurchaseStatus/PurchaseStatusService.ts/{id}:
+  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Settings/PurchaseStatusService.ts/{id}:
     get:
       summary: Get PurchaseStatus by Id
       parameters:
@@ -909,7 +909,7 @@ paths:
           schema:
             type: string
       tags:
-        - PurchaseStatus
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -947,7 +947,7 @@ paths:
           schema:
             type: string
       tags:
-        - PurchaseStatus
+        - Settings
       requestBody:
         content:
           application/json:
@@ -995,7 +995,7 @@ paths:
           schema:
             type: string
       tags:
-        - PurchaseStatus
+        - Settings
       responses:
         204:
           description: Successful Request
@@ -1017,11 +1017,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/PurchaseStatus/PurchaseStatusService.ts/count:
+  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Settings/PurchaseStatusService.ts/count:
     get:
       summary: Count the number of PurchaseStatus
       tags:
-        - PurchaseStatus
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -1045,7 +1045,7 @@ paths:
     post:
       summary: Count the number of PurchaseStatus by PurchaseStatusFilterOptions
       tags:
-        - PurchaseStatus
+        - Settings
       requestBody:
         content:
           application/json:
@@ -1127,11 +1127,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/PurchaseStatus/PurchaseStatusService.ts/search:
+  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Settings/PurchaseStatusService.ts/search:
     post:
       summary: Search PurchaseStatus by PurchaseStatusFilterOptions
       tags:
-        - PurchaseStatus
+        - Settings
       requestBody:
         content:
           application/json:
@@ -1214,7 +1214,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/ItemStatus/ItemStatusService.ts:
+  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Settings/ItemStatusService.ts:
     get:
       summary: List ItemStatus
       parameters:
@@ -1235,7 +1235,7 @@ paths:
             type: integer
             allowEmptyValue: true
       tags:
-        - ItemStatus
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -1266,7 +1266,7 @@ paths:
     post:
       summary: Create ItemStatus
       tags:
-        - ItemStatus
+        - Settings
       requestBody:
         content:
           application/json:
@@ -1298,7 +1298,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/ItemStatus/ItemStatusService.ts/{id}:
+  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Settings/ItemStatusService.ts/{id}:
     get:
       summary: Get ItemStatus by Id
       parameters:
@@ -1309,7 +1309,7 @@ paths:
           schema:
             type: string
       tags:
-        - ItemStatus
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -1347,7 +1347,7 @@ paths:
           schema:
             type: string
       tags:
-        - ItemStatus
+        - Settings
       requestBody:
         content:
           application/json:
@@ -1395,7 +1395,7 @@ paths:
           schema:
             type: string
       tags:
-        - ItemStatus
+        - Settings
       responses:
         204:
           description: Successful Request
@@ -1417,11 +1417,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/ItemStatus/ItemStatusService.ts/count:
+  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Settings/ItemStatusService.ts/count:
     get:
       summary: Count the number of ItemStatus
       tags:
-        - ItemStatus
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -1445,7 +1445,7 @@ paths:
     post:
       summary: Count the number of ItemStatus by ItemStatusFilterOptions
       tags:
-        - ItemStatus
+        - Settings
       requestBody:
         content:
           application/json:
@@ -1527,11 +1527,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/ItemStatus/ItemStatusService.ts/search:
+  /project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Settings/ItemStatusService.ts/search:
     post:
       summary: Search ItemStatus by ItemStatusFilterOptions
       tags:
-        - ItemStatus
+        - Settings
       requestBody:
         content:
           application/json:
@@ -2306,7 +2306,7 @@ components:
         Name:
           type: string
           minLength: 0
-          maxLength: 20
+          maxLength: 200
     PurchaseStatusFilterOptions:
       type: object
       properties:
@@ -2328,13 +2328,13 @@ components:
                   oneOf:
                     - type: string
                       minLength: 0
-                      maxLength: 20
+                      maxLength: 200
                     - type: array
                       items:
                         type: string
                         format: double
                         minLength: 0
-                        maxLength: 20
+                        maxLength: 200
             notEquals:
               type: object
               properties:
@@ -2350,13 +2350,13 @@ components:
                   oneOf:
                     - type: string
                       minLength: 0
-                      maxLength: 20
+                      maxLength: 200
                     - type: array
                       items:
                         type: string
                         format: double
                         minLength: 0
-                        maxLength: 20
+                        maxLength: 200
             contains:
               type: object
               properties:
@@ -2364,7 +2364,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 20
+                  maxLength: 200
             greaterThan:
               type: object
               properties:
@@ -2374,7 +2374,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 20
+                  maxLength: 200
             greaterThanOrEqual:
               type: object
               properties:
@@ -2384,7 +2384,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 20
+                  maxLength: 200
             lessThan:
               type: object
               properties:
@@ -2394,7 +2394,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 20
+                  maxLength: 200
             lessThanOrEqual:
               type: object
               properties:
@@ -2404,7 +2404,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 20
+                  maxLength: 200
         $select:
           type: array
           example: ["Id", "Name"]
@@ -2433,7 +2433,7 @@ components:
         Name:
           type: string
           minLength: 0
-          maxLength: 20
+          maxLength: 200
     ItemStatusFilterOptions:
       type: object
       properties:
@@ -2455,13 +2455,13 @@ components:
                   oneOf:
                     - type: string
                       minLength: 0
-                      maxLength: 20
+                      maxLength: 200
                     - type: array
                       items:
                         type: string
                         format: double
                         minLength: 0
-                        maxLength: 20
+                        maxLength: 200
             notEquals:
               type: object
               properties:
@@ -2477,13 +2477,13 @@ components:
                   oneOf:
                     - type: string
                       minLength: 0
-                      maxLength: 20
+                      maxLength: 200
                     - type: array
                       items:
                         type: string
                         format: double
                         minLength: 0
-                        maxLength: 20
+                        maxLength: 200
             contains:
               type: object
               properties:
@@ -2491,7 +2491,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 20
+                  maxLength: 200
             greaterThan:
               type: object
               properties:
@@ -2501,7 +2501,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 20
+                  maxLength: 200
             greaterThanOrEqual:
               type: object
               properties:
@@ -2511,7 +2511,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 20
+                  maxLength: 200
             lessThan:
               type: object
               properties:
@@ -2521,7 +2521,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 20
+                  maxLength: 200
             lessThanOrEqual:
               type: object
               properties:
@@ -2531,7 +2531,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 20
+                  maxLength: 200
         $select:
           type: array
           example: ["Id", "Name"]

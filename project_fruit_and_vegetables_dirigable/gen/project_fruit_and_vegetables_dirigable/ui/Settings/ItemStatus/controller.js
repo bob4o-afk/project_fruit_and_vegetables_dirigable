@@ -1,11 +1,11 @@
 angular.module('page', ["ideUI", "ideView", "entityApi"])
 	.config(["messageHubProvider", function (messageHubProvider) {
-		messageHubProvider.eventIdPrefix = 'project_fruit_and_vegetables_dirigable.Item.ItemInStore';
+		messageHubProvider.eventIdPrefix = 'project_fruit_and_vegetables_dirigable.Settings.ItemStatus';
 	}])
 	.config(["entityApiProvider", function (entityApiProvider) {
-		entityApiProvider.baseUrl = "/services/ts/project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Item/ItemInStoreService.ts";
+		entityApiProvider.baseUrl = "/services/ts/project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Settings/ItemStatusService.ts";
 	}])
-	.controller('PageController', ['$scope', '$http', 'messageHub', 'entityApi', 'Extensions', function ($scope, $http, messageHub, entityApi, Extensions) {
+	.controller('PageController', ['$scope', 'messageHub', 'entityApi', 'Extensions', function ($scope, messageHub, entityApi, Extensions) {
 
 		$scope.dataPage = 1;
 		$scope.dataCount = 0;
@@ -15,7 +15,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 
 		//-----------------Custom Actions-------------------//
 		Extensions.get('dialogWindow', 'project_fruit_and_vegetables_dirigable-custom-action').then(function (response) {
-			$scope.pageActions = response.filter(e => e.perspective === "Item" && e.view === "ItemInStore" && (e.type === "page" || e.type === undefined));
+			$scope.pageActions = response.filter(e => e.perspective === "Settings" && e.view === "ItemStatus" && (e.type === "page" || e.type === undefined));
 		});
 
 		$scope.triggerPageAction = function (action) {
@@ -77,7 +77,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			$scope.selectedEntity = null;
 			entityApi.count(filter).then(function (response) {
 				if (response.status != 200) {
-					messageHub.showAlertError("ItemInStore", `Unable to count ItemInStore: '${response.message}'`);
+					messageHub.showAlertError("ItemStatus", `Unable to count ItemStatus: '${response.message}'`);
 					return;
 				}
 				if (response.data) {
@@ -93,7 +93,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 
 				entityApi.search(filter).then(function (response) {
 					if (response.status != 200) {
-						messageHub.showAlertError("ItemInStore", `Unable to list/filter ItemInStore: '${response.message}'`);
+						messageHub.showAlertError("ItemStatus", `Unable to list/filter ItemStatus: '${response.message}'`);
 						return;
 					}
 					if ($scope.data == null || $scope.dataReset) {
@@ -112,7 +112,6 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.postMessage("entitySelected", {
 				entity: entity,
 				selectedMainEntityId: entity.Id,
-				optionsItemStatus: $scope.optionsItemStatus,
 			});
 		};
 
@@ -120,25 +119,21 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			$scope.selectedEntity = null;
 			$scope.action = "create";
 
-			messageHub.postMessage("createEntity", {
-				entity: {},
-				optionsItemStatus: $scope.optionsItemStatus,
-			});
+			messageHub.postMessage("createEntity");
 		};
 
 		$scope.updateEntity = function () {
 			$scope.action = "update";
 			messageHub.postMessage("updateEntity", {
 				entity: $scope.selectedEntity,
-				optionsItemStatus: $scope.optionsItemStatus,
 			});
 		};
 
 		$scope.deleteEntity = function () {
 			let id = $scope.selectedEntity.Id;
 			messageHub.showDialogAsync(
-				'Delete ItemInStore?',
-				`Are you sure you want to delete ItemInStore? This action cannot be undone.`,
+				'Delete ItemStatus?',
+				`Are you sure you want to delete ItemStatus? This action cannot be undone.`,
 				[{
 					id: "delete-btn-yes",
 					type: "emphasized",
@@ -153,7 +148,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				if (msg.data === "delete-btn-yes") {
 					entityApi.delete(id).then(function (response) {
 						if (response.status != 204) {
-							messageHub.showAlertError("ItemInStore", `Unable to delete ItemInStore: '${response.message}'`);
+							messageHub.showAlertError("ItemStatus", `Unable to delete ItemStatus: '${response.message}'`);
 							return;
 						}
 						refreshData();
@@ -165,33 +160,9 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		};
 
 		$scope.openFilter = function (entity) {
-			messageHub.showDialogWindow("ItemInStore-filter", {
+			messageHub.showDialogWindow("ItemStatus-filter", {
 				entity: $scope.filterEntity,
-				optionsItemStatus: $scope.optionsItemStatus,
 			});
 		};
-
-		//----------------Dropdowns-----------------//
-		$scope.optionsItemStatus = [];
-
-
-		$http.get("/services/ts/project_fruit_and_vegetables_dirigable/gen/project_fruit_and_vegetables_dirigable/api/Settings/ItemStatusService.ts").then(function (response) {
-			$scope.optionsItemStatus = response.data.map(e => {
-				return {
-					value: e.Id,
-					text: e.Name
-				}
-			});
-		});
-
-		$scope.optionsItemStatusValue = function (optionKey) {
-			for (let i = 0; i < $scope.optionsItemStatus.length; i++) {
-				if ($scope.optionsItemStatus[i].value === optionKey) {
-					return $scope.optionsItemStatus[i].text;
-				}
-			}
-			return null;
-		};
-		//----------------Dropdowns-----------------//
 
 	}]);
